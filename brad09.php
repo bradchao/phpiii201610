@@ -3,6 +3,9 @@
     $month = rand(1,12);
     echo $month . '<br />';
     switch ($month){
+//        default:
+//            echo 'DD';
+            //break;
         case 1: case 3:case 5:case 7:case 8:case 10:case 12:
             echo '31';
             break;
@@ -11,9 +14,6 @@
             break;
         case 2:
             echo '28';
-            break;
-        default:
-            echo 'DD';
             break;
     }
     echo '<br />Finish';
