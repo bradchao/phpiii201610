@@ -16,7 +16,7 @@
 //            }else{
 //                echo '<td bgcolor="pink">';
 //            }
-            
+
 
             for ($i=1; $i<=9; $i++){
                 $r = $newj * $i;
