@@ -1,4 +1,8 @@
 <?php
     require_once 'bradfunc.php';
-    checkTWId('R123456789');
+    if (checkTWId('B123460300')){
+        echo 'OK';
+    }else{
+        echo 'XX';
+    }
 ?>
