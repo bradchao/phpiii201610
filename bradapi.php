@@ -1,8 +1,23 @@
 <?php
+
+if (TWId::checkTWId('Y100000001')){
+    echo 'Check OK<br/>';
+}else{
+    echo 'Check XX<br/>';
+}
+
+try{
+    $id0 = new TWId('Y100000001');
+    echo $id0->getId() . '<br>';
+}catch (Exception $e){
+    echo 'ID not exist!<br />';
+}
+
 $id1 = new TWId(null);              // new TWId;
 $id2 = new TWId(null, true);        // new TWId(true);
 $id3 = new TWId(null,null,'A');     // new TWId('A');
 $id4 = new TWId(null,true, 'A');    // new TWId(true, 'A');
+
 
 echo $id1->getId() .'<br>';
 echo $id2->getId() .'<br>';
@@ -33,8 +48,14 @@ class TWId {
             $tempid .= rand(1,2);
         }
 
+        for ($i=3; $i<=9; $i++) $tempid .= rand(0,9);
 
-        $this->id = $tempid;
+        for ($i=0; $i<10; $i++){
+            if (TWId::checkTWId($tempid . $i)){
+                $this->id = $tempid . $i;
+                break;
+            }
+        }
     }
 
     private function setId($id){
