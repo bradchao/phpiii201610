@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     if (isset($_POST['account'])){
         $account = $_POST['account'];
         $passwd = $_POST['passwd'];
@@ -17,13 +19,20 @@
 //        // ......
 //        $mysqli->close();
 
-        $sql = "SELECT account,passwd FROM member WHERE account='{$account}' AND passwd='{$passwd}'";
+        $sql = "SELECT account,passwd,type FROM member WHERE account='{$account}' AND passwd='{$passwd}'";
         $resullt = $mysqli->query($sql);
         if ($error = $mysqli->error){echo $error;}
 
-        if ($resullt->num_rows == 0){
-            //
-
+        if ($resullt->num_rows == 1){
+            // 登入成功
+            $row = $resullt->fetch_assoc();
+            if ($row['type'] == 0){
+                // 視為網站管理員
+                $_SESSION['account'] = $row['account'];
+                header("Location: bmain.php");
+            }else{
+                // 一般帳號
+            }
         }else{
             echo 'Login Fail...';
         }
