@@ -7,8 +7,25 @@
     }
 
     include "sql.php";
+
+    if (isset($_GET['delid'])){
+        // 剛剛有按下Delete的功能
+        $delid = $_GET['delid'];
+        $sql = "DELETE FROM product WHERE id = {$delid}";
+        $mysqli->query($sql);
+    }
+
+
 ?>
-Backend Page
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script>
+    function delWarn(pname){
+        var ret = confirm('Delete ' + pname + ' ?');
+        return ret;
+    }
+</script>
+
+後台管理
 <hr />
 Welcome, <?php echo $account; ?><br />
 <a href="logout.php">Logout</a>
@@ -21,6 +38,7 @@ Welcome, <?php echo $account; ?><br />
         <th>Name</th>
         <th>Price</th>
         <th>Qty.</th>
+        <th>Ｄelete</th>
     </tr>
     <?php
         $sql = "SELECT * FROM product ORDER BY itemname";
@@ -32,6 +50,7 @@ Welcome, <?php echo $account; ?><br />
             echo "<td>{$row['itemname']}</td>";
             echo "<td>{$row['price']}</td>";
             echo "<td>{$row['qty']}</td>";
+            echo "<td><a href=\"?delid={$row['id']}\" onclick='return delWarn(\"{$row['itemname']}\");'>Delete</a></td>";
             echo '</tr>';
         }
     ?>

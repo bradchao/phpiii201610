@@ -17,6 +17,7 @@
     }
 
 ?>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <form>
 Item No.<input name="itemno" /><br />
 Item Name<input name="itemname" /><br />
