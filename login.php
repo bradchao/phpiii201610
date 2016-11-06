@@ -6,7 +6,8 @@
         $passwd = $_POST['passwd'];
 
 //        // Option 1:
-        $mysqli = @new mysqli('127.0.0.1','root','root', 'mydb');
+        include "sql.php";
+        //$mysqli = @new mysqli('127.0.0.1','root','root', 'mydb');
 
         // Option 2:
 //        $mysqli = mysqli_init();
