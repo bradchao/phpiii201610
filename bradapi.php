@@ -1,28 +1,64 @@
 <?php
 
-if (TWId::checkTWId('Y100000001')){
-    echo 'Check OK<br/>';
-}else{
-    echo 'Check XX<br/>';
+class MyA {
+    public $a;
+    public $array;
+    public function __construct($a, $array){
+        $this->a = $a;
+        $this->array = $array;
+    }
 }
 
-try{
-    $id0 = new TWId('Y100000001');
-    echo $id0->getId() . '<br>';
-}catch (Exception $e){
-    echo 'ID not exist!<br />';
+class Member {
+    private $twid;
+    private $cart;
+    private $isLogin;
+    public function __construct($id){
+        $this->twid = new TWId($id);
+        $this->card = new Cart;
+        $this->isLogin = false;
+    }
 }
 
-$id1 = new TWId(null);              // new TWId;
-$id2 = new TWId(null, true);        // new TWId(true);
-$id3 = new TWId(null,null,'A');     // new TWId('A');
-$id4 = new TWId(null,true, 'A');    // new TWId(true, 'A');
+class Cart {
+    private $buylist;
+    function __construct(){
+        $this->buylist = array();
+    }
+    public function addItem($itemno, $qty){
+        //$this->buylist[$itemno] = $qty;
+        if (!array_key_exists($itemno, $this->buylist)){
+            $this->buylist[$itemno] = $qty;
+        }
+    }
+    public function editItem($itemno, $qty){
+        //self::addItem($itemno, $qty);
+        if (array_key_exists($itemno, $this->buylist)){
+            $this->buylist[$itemno] = $qty;
+        }
+
+    }
+    public function removeItem($itemno){
+        unset($this->buylist[$itemno]);
+    }
+
+    public function getBuyList(){
+        return $this->buylist;
+    }
+}
 
 
-echo $id1->getId() .'<br>';
-echo $id2->getId() .'<br>';
-echo $id3->getId() .'<br>';
-echo $id4->getId() .'<br>';
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -59,7 +95,13 @@ class TWId {
     }
 
     private function setId($id){
-        if (TWId::checkTWId($id)){
+//        if (TWId::checkTWId($id)){
+//            $this->id = $id;
+//        }else{
+//            throw new Exception();
+//        }
+
+        if (self::checkTWId($id)){
             $this->id = $id;
         }else{
             throw new Exception();
