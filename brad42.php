@@ -7,8 +7,8 @@
     ImageTTFText ( $rs , 24 , 315 , 100 , 400 ,$blue, "./brad.ttf" , "Hello, World");
 
     // 3. 輸出
-    header('Content-Type: image/jpeg');
-    ImageJpeg($rs);
+    //header('Content-Type: image/jpeg');
+    ImageJpeg($rs, "bg2.jpg");
 
     // 4. 清除記憶體
     ImageDestroy ($rs);
