@@ -10,18 +10,27 @@
 
     if (isset($_REQUEST['itemno'])){
         // 要修改資料
-        $like = $_REQUEST['like'];
-        echo 'Like=';
-        foreach ($like as $v){
-            echo "{$v};";
-        }
-        echo '<br>';
-        $gender = $_REQUEST['gender'];
-        echo "Gender={$gender}";
-        echo '<br>';
-        $zipcode = $_REQUEST['area'];
-        echo "Zipcode={$zipcode}";
-        echo '<hr />';
+//        $like = $_REQUEST['like'];
+//        echo 'Like=';
+//        foreach ($like as $v){
+//            echo "{$v};";
+//        }
+//        echo '<br>';
+//        $gender = $_REQUEST['gender'];
+//        echo "Gender={$gender}";
+//        echo '<br>';
+//        $zipcode = $_REQUEST['area'];
+//        echo "Zipcode={$zipcode}";
+//        echo '<hr />';
+
+        $updateid = $_GET['updateid'];
+        $itemno = $_GET['itemno']; $itemname = $_GET['itemname'];
+        $price = $_GET['price']; $qty = $_GET['qty'];
+        $sql = "UPDATE product SET itemno='{$itemno}',itemname='{$itemname}',price='{$price}',qty='{$qty}'" .
+            " WHERE id = {$updateid}";
+        $result = $mysqli->query($sql);
+        header("Location: bmain.php");
+
     }else if (isset($_REQUEST['editid'])){
         // 要撈指定資料
         $editid = $_REQUEST['editid'];
@@ -39,6 +48,7 @@
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <form>
+    <input type="hidden" name="updateid" value="<?php echo $editid; ?>" />
     Item No.<input name="itemno" value="<?php echo $itemno; ?>"/><br />
     Item Name<input name="itemname" value="<?php echo $itemname; ?>" /><br />
     Price<input name="price" value="<?php echo $price; ?>" /><br />
