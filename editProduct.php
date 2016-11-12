@@ -11,35 +11,52 @@
     if (isset($_REQUEST['itemno'])){
         // 要修改資料
         $like = $_REQUEST['like'];
+        echo 'Like=';
         foreach ($like as $v){
-            echo "{$v}<br />";
+            echo "{$v};";
         }
+        echo '<br>';
+        $gender = $_REQUEST['gender'];
+        echo "Gender={$gender}";
+        echo '<br>';
+        $zipcode = $_REQUEST['area'];
+        echo "Zipcode={$zipcode}";
+        echo '<hr />';
     }else if (isset($_REQUEST['editid'])){
         // 要撈指定資料
+        $editid = $_REQUEST['editid'];
+        $sql = "SELECT * FROM product WHERE id = {$editid}";
+        $result = $mysqli->query($sql);
+        $editdata = $result->fetch_object();
+        $itemno = $editdata->itemno;
+        $itemname = $editdata->itemname;
+        $price = $editdata->price;
+        $qty = $editdata->qty;
+
     }
 
 
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <form>
-    Item No.<input name="itemno" /><br />
-    Item Name<input name="itemname" /><br />
-    Price<input name="price" /><br />
-    Qty.<input name="qty" /><br />
+    Item No.<input name="itemno" value="<?php echo $itemno; ?>"/><br />
+    Item Name<input name="itemname" value="<?php echo $itemname; ?>" /><br />
+    Price<input name="price" value="<?php echo $price; ?>" /><br />
+    Qty.<input name="qty" value="<?php echo $qty; ?>" /><br />
     <hr />
     <input type="checkbox" name="like[]" value="1"/>選項1
     <input type="checkbox" name="like[]" value="2" />選項2<br />
     <input type="checkbox" name="like[]" value="3" />選項3
     <input type="checkbox" name="like[]" value="4" />選項4
     <hr />
-    <input type="radio" name="gender" />男生
-    <input type="radio" name="gender" />女生
+    <input type="radio" name="gender" value="male" />男生
+    <input type="radio" name="gender" value="female" />女生
     <hr />
     <select name="area">
-        <option>北屯區</option>
-        <option>西屯區</option>
-        <option>南屯區</option>
-        <option>西區</option>
+        <option value="406">北屯區</option>
+        <option value="407">西屯區</option>
+        <option value="408">南屯區</option>
+        <option value="409">西區</option>
     </select>
     <hr />
     <textarea rows="10" cols="40" name="memo"></textarea>
