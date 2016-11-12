@@ -38,6 +38,7 @@ Welcome, <?php echo $account; ?><br />
         <th>Name</th>
         <th>Price</th>
         <th>Qty.</th>
+        <th>Icon</th>
         <th>Ｄelete</th>
         <th>Edit</th>
     </tr>
@@ -51,6 +52,7 @@ Welcome, <?php echo $account; ?><br />
             echo "<td>{$row['itemname']}</td>";
             echo "<td>{$row['price']}</td>";
             echo "<td>{$row['qty']}</td>";
+            echo "<td><img src=pimgs/p_{$row['id']}.jpeg /></td>";
             echo "<td><a href=\"?delid={$row['id']}\" onclick='return delWarn(\"{$row['itemname']}\");'>Delete</a></td>";
             echo "<td><a href=\"editProduct.php?editid={$row['id']}\">Edit</a></td>";
             echo '</tr>';
