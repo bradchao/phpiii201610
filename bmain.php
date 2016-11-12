@@ -39,6 +39,7 @@ Welcome, <?php echo $account; ?><br />
         <th>Price</th>
         <th>Qty.</th>
         <th>Ｄelete</th>
+        <th>Edit</th>
     </tr>
     <?php
         $sql = "SELECT * FROM product ORDER BY itemname";
@@ -51,6 +52,7 @@ Welcome, <?php echo $account; ?><br />
             echo "<td>{$row['price']}</td>";
             echo "<td>{$row['qty']}</td>";
             echo "<td><a href=\"?delid={$row['id']}\" onclick='return delWarn(\"{$row['itemname']}\");'>Delete</a></td>";
+            echo "<td><a href=\"editProduct.php?editid={$row['id']}\">Edit</a></td>";
             echo '</tr>';
         }
     ?>
