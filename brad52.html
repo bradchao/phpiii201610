@@ -1,0 +1,64 @@
+<script>
+    var xhttp, i;
+    i = 0;
+    if (window.XMLHttpRequest) {
+        xhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    function test1() {
+        var itemname = document.getElementById("itemname").value;
+        xhttp.open("GET", "brad53.php?itemname="+itemname, true);
+        xhttp.send();
+    }
+    function test2() {
+        itemname = "brad" + i++;
+        xhttp.open("GET", "brad53.php?itemname="+itemname, true);
+        xhttp.send();
+    }
+
+    function test3() {
+        var itemname = document.getElementById("itemname").value;
+        xhttp.open("POST", "brad53.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("itemname=" + itemname);
+    }
+    function test4() {
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML =
+                        this.responseText;
+            }
+        };
+        xhttp.open("GET", "brad56.php", true);
+        xhttp.send();
+    }
+
+    function test5() {
+        setInterval("test6()", 1000);
+    }
+    function test6() {
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("info").innerHTML =
+                        this.responseText;
+            }
+        };
+        xhttp.open("GET", "brad57.php", true);
+        xhttp.send();
+    }
+
+</script>
+<h1>Brad Big Company</h1>
+<input id="itemname" />
+<input type="button" value="Click1" onclick="test1()" /><br>
+<input type="button" value="Click2" onclick="test2()" /><br>
+<input type="button" value="Click3" onclick="test3()" /><br>
+<input type="button" value="Click4" onclick="test4()" /><br>
+<input type="button" value="Click4" onclick="test5()" /><br>
+<hr/>
+<div id="demo"></div>
+<hr />
+<div id="info"></div>

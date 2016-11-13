@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<books>
+    <book isbn="12345678" price="100">
+        <title>我的第一本書</title>
+        <authors>
+            <author>Brad</author>
+            <author>Vivian</author>
+        </authors>
+        <description>
+            這裡是描述這本書的內容
+        </description>
+    </book>
+    <book isbn="12345679" price="100">
+        <title>我的第二本書</title>
+        <authors>
+            <author>Brad</author>
+        </authors>
+        <description>
+            這裡是描述這本書的內容
+        </description>
+    </book>
+</books>
